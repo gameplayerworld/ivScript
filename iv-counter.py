@@ -6,8 +6,6 @@ import telebot
 from datetime import datetime
 from configparser import ConfigParser
 
-bot = telebot.TeleBot("744885487:AAFMkYEKj5NjaNEvQ_Fe9uRhB63y17itALw")
-
 def split_string(string): 
   
     # Split the string based on space delimiter 
