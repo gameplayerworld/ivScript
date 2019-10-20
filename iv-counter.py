@@ -8,7 +8,6 @@ from configparser import ConfigParser
 
 bot = telebot.TeleBot("744885487:AAFMkYEKj5NjaNEvQ_Fe9uRhB63y17itALw")
 
-
 def split_string(string): 
   
     # Split the string based on space delimiter 
@@ -16,15 +15,12 @@ def split_string(string):
       
 	return list_string 
 
-
-
 def run(host,database,user,password,token,chatId,sleepTime,ivStart):
 	bot = telebot.TeleBot(token)
 	lastMessageID = 0
 	lastMessage = ""
 	print("- - - - - - - - IV-Counter Script gestartet - - - - - - - -")
 	while True:
-
 		connection = MySQLdb.connect(host=host,db=database,user=user, passwd=password)
 		cursor = connection.cursor()
 	
@@ -56,7 +52,7 @@ def run(host,database,user,password,token,chatId,sleepTime,ivStart):
 			lastMessage = message
 			lastMessageID = id.message_id
 			time.sleep(int(sleepTime))
-
+			
 def init():
 	parser = ConfigParser()
 	parser.read('iv-config.ini', encoding='utf-8')
@@ -74,5 +70,3 @@ def init():
 
 	run(host,database,user,password,token,chatId,sleepTime,ivStart)
 init()
-
-
