@@ -7,10 +7,7 @@ from datetime import datetime
 from configparser import ConfigParser
 
 def split_string(string): 
-  
-    # Split the string based on space delimiter 
-	list_string = string.split(',), (') 
-      
+	list_string = string.split(',), (')       
 	return list_string 
 
 def run(host,database,user,password,token,chatId,sleepTime,ivStart):
