@@ -12,5 +12,5 @@ Zusätzlich benötigt man einen eigenen Bot welcher in den Kanal/Gruppe als Admi
 Anleitung dazu folgt in kürze...
 
 
-Script kann über screen python3 iv-counter.py gestartet werden
+Script kann über den Befehl "screen python3 iv-counter.py" gestartet werden
 
