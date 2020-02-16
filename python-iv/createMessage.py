@@ -20,9 +20,11 @@ class createMessage():
         leben = Sql.individual_stamina[i]
         iv = round(((angriff + verteidigung + leben ) / 45) *100)
         if(iv == 100):
-          hunni = "\U0001F4AF"
+          highlight = cfg.iv100 + iv
+        elif(iv == 0):
+          highlight = cfg.iv0 + iv
         else:
-          hunni = iv
+          highlight = iv
 
         cp_multiplier = Sql.cp_multiplier[i]
         level = pokeID.getLevel(cp_multiplier)
@@ -42,7 +44,7 @@ class createMessage():
 #Format erste Nachricht, wenn deaktiviert, nachricht nicht entfernt??? ohne erste nachricht stimmt die erste verlinkugn nicht, danach meldet er keine pokemn da, obwohl vorhanden
           kurzattacke = attacke.getShortAttack(Sql.shortattack[i])
           ladeattacke = attacke.getLoadAttack(Sql.loadattack[i])
-          overview += "<b>" +  str(hunni) + "% L" + str(level) + " "  + str(name) + str(pokeID.getGeschlecht(Sql.gender[i])) + " " + str(Sql.cp[i]) + "WP, \u23F1" + str(zeit.strftime(" %H:%M:%S")) + "</b>\n└ <a href='" + cfg.ivchatUrl + "/" + str(id) + "'>(" + str(angriff) +"/"+ str(verteidigung)+"/"+str(leben)+ ") " + str(kurzattacke) + "/" + str(ladeattacke) +"</a>\n"
+          overview += "<b>" +  str(highlight) + "% L" + str(level) + " "  + str(name) + str(pokeID.getGeschlecht(Sql.gender[i])) + " " + str(Sql.cp[i]) + "WP, \u23F1" + str(zeit.strftime(" %H:%M:%S")) + "</b>\n└ <a href='" + cfg.ivchatUrl + "/" + str(id) + "'>(" + str(angriff) +"/"+ str(verteidigung)+"/"+str(leben)+ ") " + str(kurzattacke) + "/" + str(ladeattacke) +"</a>\n"
 
           i +=1
         else:####hier gleich mal pr�fen ob der iv wert passt
@@ -52,13 +54,15 @@ class createMessage():
 #            if (iv >= pokeID.iv or level >= pokeID.level) and not pokeID.iv == 200:
             if ((iv >= pokeID.iv or level >= pokeID.level) or iv == 0 or iv == 100) and not pokeID.iv == 200:
               if(iv == 100):
-                hunni = "\U0001F4AF"
+                highlight = cfg.iv100 + iv
+              elif(iv == 0):
+                highlight = cfg.iv0 + iv
               else:
-                hunni = iv
+                highlight = iv
               kurzattacke = attacke.getShortAttack(Sql.shortattack[i])
               ladeattacke = attacke.getLoadAttack(Sql.loadattack[i])
 #Format Einzel Nachricht iv ODER level
-              bolt_line = str(hunni) + "% L" + str(level) + " " + str(name) + pokeID.getGeschlecht(Sql.gender[i]) + "(" + str(Sql.cp[i]) + ")" + str(zeit.strftime(" %H:%M:%S"))
+              bolt_line = str(highlight) + "% L" + str(level) + " " + str(name) + pokeID.getGeschlecht(Sql.gender[i]) + "(" + str(Sql.cp[i]) + ")" + str(zeit.strftime(" %H:%M:%S"))
               normal_line = "(" + str(angriff) + "/" + str(verteidigung) + "/" + str(leben) + ") " + str(kurzattacke) + "/" + str(ladeattacke)
               #iv_message = "\U00002696 " + str(int(iv)) + "% (" + str(angriff) + " / " + str(verteidigung) + " / " + str(leben) + ")\n"
               #attack_message = "\U0001F93A " + str(kurzattacke) + " / " + str(ladeattacke) +"\n"
@@ -67,7 +71,7 @@ class createMessage():
               
               id = send.send(bolt_line,normal_line,encounter,Sql.latitude[i],Sql.longitude[i])
 #Format Zusammenfassung ODER
-              overview += "<b>" +  str(hunni) + "% L" + str(level) + " "  + str(name) + str(pokeID.getGeschlecht(Sql.gender[i])) + " " + str(Sql.cp[i]) + "WP, \u23F1" + str(zeit.strftime(" %H:%M:%S")) + "</b>\n└ <a href='" + cfg.ivchatUrl + "/" + str(id) + "'>(" + str(angriff) +"/"+ str(verteidigung)+"/"+str(leben)+ ") " + str(kurzattacke) + "/" + str(ladeattacke) +"</a>\n"
+              overview += "<b>" +  str(highlight) + "% L" + str(level) + " "  + str(name) + str(pokeID.getGeschlecht(Sql.gender[i])) + " " + str(Sql.cp[i]) + "WP, \u23F1" + str(zeit.strftime(" %H:%M:%S")) + "</b>\n└ <a href='" + cfg.ivchatUrl + "/" + str(id) + "'>(" + str(angriff) +"/"+ str(verteidigung)+"/"+str(leben)+ ") " + str(kurzattacke) + "/" + str(ladeattacke) +"</a>\n"
 
               i +=1
             else:
@@ -77,13 +81,15 @@ class createMessage():
 #            if (iv >= pokeID.iv and level >= pokeID.level) and not pokeID.iv == 200:
             if ((iv >= pokeID.iv and level >= pokeID.level) or iv == 0 or iv == 100) and not pokeID.iv == 200:
               if(iv == 100):
-                hunni = "\U0001F4AF"
+                highlight = cfg.iv100 + iv
+              elif(iv == 0):
+                highlight = cfg.iv0 + iv
               else:
-                hunni = iv
+                highlight = iv
               kurzattacke = attacke.getShortAttack(Sql.shortattack[i])
               ladeattacke = attacke.getLoadAttack(Sql.loadattack[i])
 #Format Einzel Nachricht iv UND level
-              bolt_line = str(hunni) + "% L" + str(level) + " " + str(name) + pokeID.getGeschlecht(Sql.gender[i]) + "(" + str(Sql.cp[i]) + ")" + str(zeit.strftime(" %H:%M:%S"))
+              bolt_line = str(highlight) + "% L" + str(level) + " " + str(name) + pokeID.getGeschlecht(Sql.gender[i]) + "(" + str(Sql.cp[i]) + ")" + str(zeit.strftime(" %H:%M:%S"))
               normal_line = "(" + str(angriff) + "/" + str(verteidigung) + "/" + str(leben) + ") " + str(kurzattacke) + "/" + str(ladeattacke)
               #info_message = str(name) + " " + str(cp) + "WP (LVL" + str(level) + geschlecht + ")\n"  
               #iv_message = "\U00002696 " + str(int(iv)) + "% (" + str(angriff) + " / " + str(verteidigung) + " / " + str(leben) + ")\n"
@@ -93,7 +99,7 @@ class createMessage():
               
               id = send.send(bolt_line,normal_line,encounter,Sql.latitude[i],Sql.longitude[i])
 #Format Zusammenfassung UND
-              overview += "<b>" +  str(hunni) + "% L" + str(level) + " "  + str(name) + str(pokeID.getGeschlecht(Sql.gender[i])) + " " + str(Sql.cp[i]) + "WP, \u23F1" + str(zeit.strftime(" %H:%M:%S")) + "</b>\n└ <a href='" + cfg.ivchatUrl + "/" + str(id) + "'>(" + str(angriff) +"/"+ str(verteidigung)+"/"+str(leben)+ ") " + str(kurzattacke) + "/" + str(ladeattacke) +"</a>\n"
+              overview += "<b>" +  str(highlight) + "% L" + str(level) + " "  + str(name) + str(pokeID.getGeschlecht(Sql.gender[i])) + " " + str(Sql.cp[i]) + "WP, \u23F1" + str(zeit.strftime(" %H:%M:%S")) + "</b>\n└ <a href='" + cfg.ivchatUrl + "/" + str(id) + "'>(" + str(angriff) +"/"+ str(verteidigung)+"/"+str(leben)+ ") " + str(kurzattacke) + "/" + str(ladeattacke) +"</a>\n"
               i +=1
             else:
 #              print(cfg.areaName+" IV-Wert und Level-Wert zu gering\n")

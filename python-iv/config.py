@@ -26,6 +26,8 @@ class Config():
   chatId = ""
   chatUrl = ""
   areaName = ""
+  iv100 = ""
+  iv0 = ""
 
   def readConfig(self,cfgFile):  
     parser = ConfigParser()
@@ -52,6 +54,9 @@ class Config():
     #self.hours = parser.get('Options', 'defineHours')
     
     self.areaName = parser.get('Geofence', 'areaName')
+    self.iv100 = parser.get('IV', '100')
+    self.iv0 = parser.get('IV', '0')
+
     self.min_latitude = parser.get('Geofence', 'minLat')
     self.max_latitude = parser.get('Geofence', 'maxLat')
     self.min_longitude = parser.get('Geofence', 'minLon')
