@@ -5,7 +5,7 @@ import datetime
 import helper
 
 class createMessage():
-  def create(self,Sql,send,sleep,cfg):
+  def create(self,Sql,send,sleep,cfg,gmt):
     attacke = attacks.attacks()
     pokeID = pokemon.pokemon()
     Help = helper.Helper()
@@ -30,7 +30,7 @@ class createMessage():
         level = pokeID.getLevel(cp_multiplier)
         mode = pokeID.mode
         zeit = Sql.disappear_time[i]
-        zeit = zeit + datetime.timedelta(hours=1)
+        zeit = zeit + datetime.timedelta(hours=gmt)
 
         if send.list_output.__contains__(encounter):
           print(cfg.areaName+" bereits gesendet")
