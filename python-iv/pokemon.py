@@ -51,7 +51,7 @@ class pokemon():
         24: "Arbok",
         25: "Pikachu",
         26: "Raichu",
-        27: "Sandon",
+        27: "Sandan",
         28: "Sandamer",
         29: "Nidoran\U00002640",
         30: "Nidorina",

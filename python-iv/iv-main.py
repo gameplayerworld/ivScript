@@ -19,7 +19,7 @@ cfg = config.Config()
 try:
   cfg.readConfig(sys.argv[1])
 except:
-  cfg.readConfig("iv-config.ini")
+  cfg.readConfig("config.ini")
 
 clear = clear.Clear()
 clear.clear(cfg.token,cfg.ivchatId,cfg)
