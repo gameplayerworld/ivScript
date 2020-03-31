@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import telebot
+import datetime
 
 class sendMessage():
   chatID = 0
@@ -27,7 +28,15 @@ class sendMessage():
     if message == "":
       message = "Aktuell keine gefilterten Pokemon vorhanden"
     if not message == self.overview_old:
-      if len(message) <= len(self.overview_old):
+      # DEBUG:
+      #f = open("DEBUG.txt", "a")
+      #f.writelines("\n\n####################==========\\ " + str(datetime.datetime.now()) + " /==========####################")
+      #f.writelines("\n old Message len ==> " + str(len(self.overview_old)) + "\n")
+      #f.writelines(str(self.overview_old))
+      #f.writelines("\n new Message len ==> " + str(len(message)) + "\n")
+      #f.writelines(str(message))
+      #f.close()
+      if len(message) <= len(self.overview_old) and not self.overview_old == "Aktuell keine gefilterten Pokemon vorhanden":
         try:
           self.bot.edit_message_text(message,chat_id=self.chatID, message_id=self.overviewId.message_id, parse_mode='HTML',disable_web_page_preview=True) ##Nachricht 
           self.overview_old = message

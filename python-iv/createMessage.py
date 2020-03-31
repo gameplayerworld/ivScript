@@ -8,7 +8,7 @@ class createMessage():
   def create(self,Sql,send,sleep,cfg,gmt):
     attacke = attacks.attacks()
     pokeID = pokemon.pokemon()
-    Help = helper.Helper()
+    #Help = helper.Helper()
     overview = ""
     i = 0
     id = 0
@@ -124,5 +124,5 @@ class createMessage():
         ausgabe += "longitude: " + str(Sql.longitude.__len__) + "\n"
         ausgabe += "latitude: " + str(Sql.latitude.__len__) + "\n"
         ausgabe += "Wert i = " + str(i) + "\n"
-        outF.writelines(ausgabe + str(e.line))
+        outF.writelines(ausgabe + str(e))
         outF.close()
