@@ -15,6 +15,7 @@ class createMessage():
     try:
       for encounter in Sql.encounter_id:
         name = pokeID.getPokemon(Sql.pokemon_id[i])
+        verify = " \u2705 " if not Sql.calc_endminsec[i] == None else " \u2754"
         angriff = Sql.individual_attack[i]
         verteidigung = Sql.individual_defense[i]
         leben = Sql.individual_stamina[i]
@@ -44,7 +45,7 @@ class createMessage():
 #Format erste Nachricht, wenn deaktiviert, nachricht nicht entfernt??? ohne erste nachricht stimmt die erste verlinkugn nicht, danach meldet er keine pokemn da, obwohl vorhanden
           kurzattacke = attacke.getShortAttack(Sql.shortattack[i])
           ladeattacke = attacke.getLoadAttack(Sql.loadattack[i])
-          overview += "<b>" + str(highlight) + str(iv) + "% L" + str(level) + " "  + str(name) + str(pokeID.getGeschlecht(Sql.gender[i])) + " " + str(Sql.cp[i]) + "WP, " + str(zeit.strftime(" %H:%M:%S")) + "</b>\n└ <a href='" + cfg.ivchatUrl + "/" + str(id) + "'>(" + str(angriff) +"/"+ str(verteidigung)+"/"+str(leben)+ ") " + str(kurzattacke) + "/" + str(ladeattacke) +"</a>\n"
+          overview += "<b>" + str(highlight) + str(iv) + "% L" + str(level) + " "  + str(name) + str(pokeID.getGeschlecht(Sql.gender[i])) + " " + str(Sql.cp[i]) + "WP, " + str(zeit.strftime(" %H:%M:%S")) + "</b>" + verify + "\n└ <a href='" + cfg.ivchatUrl + "/" + str(id) + "'>(" + str(angriff) +"/"+ str(verteidigung)+"/"+str(leben)+ ") " + str(kurzattacke) + "/" + str(ladeattacke) +"</a>\n"
 
           i +=1
         else:####hier gleich mal pr�fen ob der iv wert passt
@@ -63,7 +64,7 @@ class createMessage():
               ladeattacke = attacke.getLoadAttack(Sql.loadattack[i])
 #Format Einzel Nachricht iv ODER level
 #              bolt_line = str(int(iv)) + "% L" + str(level) + " " + str(name) + pokeID.getGeschlecht(Sql.gender[i]) + "(" + str(Sql.cp[i]) + ")" + str(zeit.strftime(" %H:%M:%S"))
-              bolt_line = str(highlight) + str(int(iv)) + "% L" + str(level) + " " + str(name) + pokeID.getGeschlecht(Sql.gender[i]) + "(" + str(Sql.cp[i]) + ")" + str(zeit.strftime(" %H:%M:%S"))
+              bolt_line = str(highlight) + str(int(iv)) + "% L" + str(level) + " " + str(name) + pokeID.getGeschlecht(Sql.gender[i]) + "(" + str(Sql.cp[i]) + ")" + str(zeit.strftime(" %H:%M:%S")) + verify
               normal_line = "(" + str(angriff) + "/" + str(verteidigung) + "/" + str(leben) + ") " + str(kurzattacke) + "/" + str(ladeattacke)
               #iv_message = "\U00002696 " + str(int(iv)) + "% (" + str(angriff) + " / " + str(verteidigung) + " / " + str(leben) + ")\n"
               #attack_message = "\U0001F93A " + str(kurzattacke) + " / " + str(ladeattacke) +"\n"
@@ -72,7 +73,7 @@ class createMessage():
               
               id = send.send(bolt_line,normal_line,encounter,Sql.latitude[i],Sql.longitude[i])
 #Format Zusammenfassung ODER
-              overview += "<b>" + str(highlight) + str(iv) + "% L" + str(level) + " "  + str(name) + str(pokeID.getGeschlecht(Sql.gender[i])) + " " + str(Sql.cp[i]) + "WP, " + str(zeit.strftime(" %H:%M:%S")) + "</b>\n└ <a href='" + cfg.ivchatUrl + "/" + str(id) + "'>(" + str(angriff) +"/"+ str(verteidigung)+"/"+str(leben)+ ") " + str(kurzattacke) + "/" + str(ladeattacke) +"</a>\n"
+              overview += "<b>" + str(highlight) + str(iv) + "% L" + str(level) + " "  + str(name) + str(pokeID.getGeschlecht(Sql.gender[i])) + " " + str(Sql.cp[i]) + "WP, " + str(zeit.strftime(" %H:%M:%S")) + "</b>" + verify + "\n└ <a href='" + cfg.ivchatUrl + "/" + str(id) + "'>(" + str(angriff) +"/"+ str(verteidigung)+"/"+str(leben)+ ") " + str(kurzattacke) + "/" + str(ladeattacke) +"</a>\n"
 
               i +=1
             else:
@@ -90,7 +91,7 @@ class createMessage():
               kurzattacke = attacke.getShortAttack(Sql.shortattack[i])
               ladeattacke = attacke.getLoadAttack(Sql.loadattack[i])
 #Format Einzel Nachricht iv UND level
-              bolt_line = str(highlight) + str(int(iv)) + "% L" + str(level) + " " + str(name) + pokeID.getGeschlecht(Sql.gender[i]) + "(" + str(Sql.cp[i]) + ")" + str(zeit.strftime(" %H:%M:%S"))
+              bolt_line = str(highlight) + str(int(iv)) + "% L" + str(level) + " " + str(name) + pokeID.getGeschlecht(Sql.gender[i]) + "(" + str(Sql.cp[i]) + ")" + str(zeit.strftime(" %H:%M:%S")) + verify
 #              bolt_line = str(int(iv)) + "% L" + str(level) + " " + str(name) + pokeID.getGeschlecht(Sql.gender[i]) + "(" + str(Sql.cp[i]) + ")" + str(zeit.strftime(" %H:%M:%S"))
               normal_line = "(" + str(angriff) + "/" + str(verteidigung) + "/" + str(leben) + ") " + str(kurzattacke) + "/" + str(ladeattacke)
               #info_message = str(name) + " " + str(cp) + "WP (LVL" + str(level) + geschlecht + ")\n"  
@@ -101,16 +102,19 @@ class createMessage():
               
               id = send.send(bolt_line,normal_line,encounter,Sql.latitude[i],Sql.longitude[i])
 #Format Zusammenfassung UND
-              overview += "<b>" + str(highlight) + str(iv) + "% L" + str(level) + " "  + str(name) + str(pokeID.getGeschlecht(Sql.gender[i])) + " " + str(Sql.cp[i]) + "WP, " + str(zeit.strftime(" %H:%M:%S")) + "</b>\n└ <a href='" + cfg.ivchatUrl + "/" + str(id) + "'>(" + str(angriff) +"/"+ str(verteidigung)+"/"+str(leben)+ ") " + str(kurzattacke) + "/" + str(ladeattacke) +"</a>\n"
+              overview += "<b>" + str(highlight) + str(iv) + "% L" + str(level) + " "  + str(name) + str(pokeID.getGeschlecht(Sql.gender[i])) + " " + str(Sql.cp[i]) + "WP, " + str(zeit.strftime(" %H:%M:%S")) + "</b>" + verify + "\n└ <a href='" + cfg.ivchatUrl + "/" + str(id) + "'>(" + str(angriff) +"/"+ str(verteidigung)+"/"+str(leben)+ ") " + str(kurzattacke) + "/" + str(ladeattacke) +"</a>\n"
               i +=1
             else:
 #              print(cfg.areaName+" IV-Wert und Level-Wert zu gering\n")
               i +=1
-      send.sendOverview(overview)
+      print("spawns: " + str(i))
+      scanned = "\n(von " + str(i) + " aktiv gescannten Pok\u00E9mon)"
+      send.sendOverview(overview,scanned)
     except Exception as e:
         outF = open(cfg.areaName+"error.txt","w")
         ausgabe = "Passierte in der CreateMessage.py\n"
-        ausgabe += "Encounter_id: " + str(Sql.encounter_id.__len__) + "\n"
+        ausgabe += "encounter_id: " + str(Sql.encounter_id.__len__) + "\n"
+        ausgabe += "calc_endminsec: " + str(Sql.calc_endminsec.__len__) + "\n"
         ausgabe += "pokemon_id: " + str(Sql.pokemon_id.__len__) + "\n"
         ausgabe += "individual_attack: " + str(Sql.individual_attack.__len__) + "\n"
         ausgabe += "individual_defense: " + str(Sql.individual_defense.__len__) + "\n"

@@ -3,6 +3,7 @@ import time
 
 class Sql():
   encounter_id = []
+  calc_endminsec = []
   pokemon_id = []
   individual_attack = []
   individual_defense = []
@@ -26,6 +27,7 @@ class Sql():
       time.sleep(15)
       return self.startSQL(cfg,modul)
     self.encounter_id.clear()
+    self.calc_endminsec.clear()
     self.pokemon_id.clear()
     self.individual_attack.clear()
     self.individual_defense.clear()
@@ -42,29 +44,31 @@ class Sql():
 #Abfragen der Daten aus der Datenbank
     if modul == "0er":
 
-      MySQLall = cursor.execute("SELECT encounter_id,pokemon_id,individual_attack,individual_defense,individual_stamina,disappear_time,cp,cp_multiplier,move_1,move_2,gender,longitude,latitude FROM pokemon where individual_attack IS NOT NULL AND disappear_time > utc_timestamp() AND longitude BETWEEN " + cfg.min_longitude + " AND " + cfg.max_longitude + " AND latitude BETWEEN " + cfg.min_latitude + " AND " + cfg.max_latitude + " ORDER BY round(((`individual_attack` + `individual_defense` + `individual_stamina` ) / 45) *100) DESC, disappear_time DESC")
+      cursor.execute("SELECT p.encounter_id,s.calc_endminsec,p.pokemon_id,p.individual_attack,p.individual_defense,p.individual_stamina,p.disappear_time,p.cp,p.cp_multiplier,p.move_1,p.move_2,p.gender,p.longitude,p.latitude FROM pokemon p LEFT JOIN trs_spawn s ON p.spawnpoint_id = s.spawnpoint where individual_attack IS NOT NULL AND disappear_time > utc_timestamp() AND p.longitude BETWEEN " + cfg.min_longitude + " AND " + cfg.max_longitude + " AND p.latitude BETWEEN " + cfg.min_latitude + " AND " + cfg.max_latitude + " ORDER BY round(((`individual_attack` + `individual_defense` + `individual_stamina` ) / 45) *100) DESC, disappear_time DESC")
       all = cursor.fetchall()
       i = 0
       try:
         while i < len(all):
           self.encounter_id.append(all[i][0])
-          self.pokemon_id.append(all[i][1])
-          self.individual_attack.append(all[i][2])
-          self.individual_defense.append(all[i][3])
-          self.individual_stamina.append(all[i][4])
-          self.disappear_time.append(all[i][5])
-          self.cp.append(all[i][6])
-          self.cp_multiplier.append(all[i][7])
-          self.shortattack.append(all[i][8])
-          self.loadattack.append(all[i][9])
-          self.gender.append(all[i][10])
-          self.longitude.append(all[i][11])
-          self.latitude.append(all[i][12])
+          self.calc_endminsec.append(all[i][1])
+          self.pokemon_id.append(all[i][2])
+          self.individual_attack.append(all[i][3])
+          self.individual_defense.append(all[i][4])
+          self.individual_stamina.append(all[i][5])
+          self.disappear_time.append(all[i][6])
+          self.cp.append(all[i][7])
+          self.cp_multiplier.append(all[i][8])
+          self.shortattack.append(all[i][9])
+          self.loadattack.append(all[i][10])
+          self.gender.append(all[i][11])
+          self.longitude.append(all[i][12])
+          self.latitude.append(all[i][13])
           i +=1
       except Exception as e:
-        outF = open(self.areaName+"error.txt","w")
+        outF = open(cfg.areaName+"error.txt","w")
         ausgabe = "Passierte in der SQL.py\n"
-        ausgabe += "Encounter_id: " + str(self.encounter_id.__len__) + "\n"
+        ausgabe += "encounter_id: " + str(self.encounter_id.__len__) + "\n"
+        ausgabe += "calc_endminsec: " + str(self.calc_endminsec.__len__) + "\n"
         ausgabe += "pokemon_id: " + str(self.pokemon_id.__len__) + "\n"
         ausgabe += "individual_attack: " + str(self.individual_attack.__len__) + "\n"
         ausgabe += "individual_defense: " + str(self.individual_defense.__len__) + "\n"
