@@ -26,6 +26,7 @@ class createMessage():
         ladeattacke = attacke.getLoadAttack(Sql.loadattack[i])
         cp_multiplier = Sql.cp_multiplier[i]
         level = pokeID.getLevel(cp_multiplier)
+        mode = pokeID.mode
         zeit = Sql.disappear_time[i]
         zeit = zeit + datetime.timedelta(hours=gmt)
 
@@ -36,22 +37,33 @@ class createMessage():
         else:
           highlight = ""
 
-        if ((iv >= pokeID.iv or level >= pokeID.level) or iv == 0 or iv == 100) and not pokeID.iv == 200:
-          if send.list_output.__contains__(encounter):
-            print(cfg.areaName+" bereits gesendet")
-            f = open(cfg.areaName+"output.txt", "r")
-              # Split the string based on space delimiter 
-            list_string = f.read()
-            list_string = list_string[1:len(list_string)-1]
-            f.close()
-            list_string = list_string.split(', ') 
-            id = list_string[send.list_output.index(encounter)]
-          else:
-            bolt_line = str(highlight) + str(int(iv)) + "% " + str(name) + " " + pokeID.getGeschlecht(Sql.gender[i]) + " (" + str(Sql.cp[i]) + ")" + str(zeit.strftime(" %H:%M:%S")) + verify
-            normal_line = "(L" + str(level) + ", " + str(angriff) + "/" + str(verteidigung) + "/" + str(leben) + ") " + str(kurzattacke) + "/" + str(ladeattacke)
-            id = send.send(bolt_line,normal_line,encounter,Sql.latitude[i],Sql.longitude[i])
-        
+        # Costum  bolt_line/normal_line
+        bolt_line = str(highlight) + str(int(iv)) + "% " + str(name) + " " + pokeID.getGeschlecht(Sql.gender[i]) + " (" + str(Sql.cp[i]) + ")" + str(zeit.strftime(" %H:%M:%S")) + verify
+        normal_line = "(L" + str(level) + ", " + str(angriff) + "/" + str(verteidigung) + "/" + str(leben) + ") " + str(kurzattacke) + "/" + str(ladeattacke)
+        ###############################
+
+        if send.list_output.__contains__(encounter):
+          print(cfg.areaName+" bereits gesendet")
+          f = open(cfg.areaName+"output.txt", "r")
+            # Split the string based on space delimiter 
+          list_string = f.read()
+          list_string = list_string[1:len(list_string)-1]
+          f.close()
+          list_string = list_string.split(', ') 
+          id = list_string[send.list_output.index(encounter)]
+          # Costum  Overview
           overview += "<b>" + str(highlight) + str(iv) + "% " + str(name) + " " + str(pokeID.getGeschlecht(Sql.gender[i])) + " " + str(Sql.cp[i]) + "WP, " + str(zeit.strftime(" %H:%M:%S")) + "</b>" + verify + "\n└ <a href='" + cfg.ivchatUrl + "/" + str(id) + "'>(L" + str(level) + ", " + str(angriff) +"/"+ str(verteidigung)+"/"+str(leben)+ ") " + str(kurzattacke) + "/" + str(ladeattacke) +"</a>\n"
+        else:
+          if not mode:
+            if ((iv >= pokeID.iv or level >= pokeID.level) or iv == 0 or iv == 100) and not pokeID.iv == 200:
+              id = send.send(bolt_line,normal_line,encounter,Sql.latitude[i],Sql.longitude[i])
+              # Costum  Overview
+              overview += "<b>" + str(highlight) + str(iv) + "% " + str(name) + " " + str(pokeID.getGeschlecht(Sql.gender[i])) + " " + str(Sql.cp[i]) + "WP, " + str(zeit.strftime(" %H:%M:%S")) + "</b>" + verify + "\n└ <a href='" + cfg.ivchatUrl + "/" + str(id) + "'>(L" + str(level) + ", " + str(angriff) +"/"+ str(verteidigung)+"/"+str(leben)+ ") " + str(kurzattacke) + "/" + str(ladeattacke) +"</a>\n"
+          else:
+            if ((iv >= pokeID.iv and level >= pokeID.level) or iv == 0 or iv == 100) and not pokeID.iv == 200:
+              id = send.send(bolt_line,normal_line,encounter,Sql.latitude[i],Sql.longitude[i])
+              # Costum  Overview
+              overview += "<b>" + str(highlight) + str(iv) + "% " + str(name) + " " + str(pokeID.getGeschlecht(Sql.gender[i])) + " " + str(Sql.cp[i]) + "WP, " + str(zeit.strftime(" %H:%M:%S")) + "</b>" + verify + "\n└ <a href='" + cfg.ivchatUrl + "/" + str(id) + "'>(L" + str(level) + ", " + str(angriff) +"/"+ str(verteidigung)+"/"+str(leben)+ ") " + str(kurzattacke) + "/" + str(ladeattacke) +"</a>\n"
         i +=1
       scanned = "\n(von " + str(i) + " aktiv gescannten Pok\u00E9mon)"
       send.sendOverview(overview,scanned)
