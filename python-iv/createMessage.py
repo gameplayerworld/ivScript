@@ -13,8 +13,6 @@ class createMessage():
 
     now = datetime.datetime.now()
     print("####################==========\\ *** IV *** Update " + cfg.areaName + " " + now.strftime("%m/%d/%Y, %H:%M:%S") + " /==========####################\n")
-    print(Sql.form)
-
 
     try:
       for encounter in Sql.encounter_id:
