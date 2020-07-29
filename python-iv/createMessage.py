@@ -114,9 +114,9 @@ class createMessage():
         "fr": "(of "
       },
       "scanned": {
-        "de": "aktiv gescannten Pok\u00E9mon)",
-        "en": "actively scanned Pok\u00E9mon)",
-        "fr": "actively scanned Pok\u00E9mon)"
+        "de": " aktiv gescannten Pok\u00E9mon)",
+        "en": " actively scanned Pok\u00E9mon)",
+        "fr": " actively scanned Pok\u00E9mon)"
       }
     }
     return text[value][language]
