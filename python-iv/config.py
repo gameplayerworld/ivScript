@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from configparser import ConfigParser
+import ast
 
 ####Hier wird die Config aus dem Configfile geladen und den einzelen
 ####Werten zugewiesen
@@ -26,6 +27,7 @@ class Config():
   language = ""
   chatId = ""
   chatUrl = ""
+  sort_pokemon = bool
   areaName = ""
   iv100 = ""
   iv0 = ""
@@ -50,6 +52,7 @@ class Config():
     self.nuller = parser.get('Modul','nuller')
 
     self.sleepTime = parser.get('Message', 'sleep_time')
+    self.sort_pokemon = (parser.getboolean("Options", "sort_pokemon"))
 
     #self.newMessageAfter = parser.get('Message', 'newMessageAfter')
     #self.rocketStops = parser.get('Options', 'rocketStops')
