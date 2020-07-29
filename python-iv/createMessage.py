@@ -13,22 +13,38 @@ class createMessage():
 
     now = datetime.datetime.now()
     print("####################==========\\ *** IV *** Update " + cfg.areaName + " " + now.strftime("%m/%d/%Y, %H:%M:%S") + " /==========####################\n")
+    print(Sql.form)
+
 
     try:
       for encounter in Sql.encounter_id:
-        name = pokeID.getPokemon(Sql.pokemon_id[i])
+        name = pokeID.getPokemon(Sql.pokemon_id[i],cfg.language)
         verify = " \u2705 " if not Sql.calc_endminsec[i] == None else " \u2754"
         angriff = Sql.individual_attack[i]
         verteidigung = Sql.individual_defense[i]
         leben = Sql.individual_stamina[i]
         iv = round(((angriff + verteidigung + leben ) / 45) *100)
-        kurzattacke = attacke.getShortAttack(Sql.shortattack[i])
-        ladeattacke = attacke.getLoadAttack(Sql.loadattack[i])
+        kurzattacke = attacke.getShortAttack(Sql.shortattack[i],cfg.language)
+        ladeattacke = attacke.getLoadAttack(Sql.loadattack[i],cfg.language)
         cp_multiplier = Sql.cp_multiplier[i]
         level = pokeID.getLevel(cp_multiplier)
+
+        form = pokeID.getForm(Sql.form[i],cfg.language)
+        costume = pokeID.getCostume(Sql.costume[i],cfg.language)
+
         mode = pokeID.mode
         zeit = Sql.disappear_time[i]
         zeit = zeit + datetime.timedelta(hours=gmt)
+
+        if form:
+          getform = "(" + form + ")"
+        else:
+          getform = ""
+
+        if costume:
+          getcostume = "(" + costume + ")"
+        else:
+          getcostume = ""
 
         if(iv == 100):
           highlight = cfg.iv100 + " "
@@ -38,7 +54,7 @@ class createMessage():
           highlight = ""
 
         # Costum  bolt_line/normal_line
-        bolt_line = str(highlight) + str(int(iv)) + "% " + str(name) + " " + pokeID.getGeschlecht(Sql.gender[i]) + " (" + str(Sql.cp[i]) + ")" + str(zeit.strftime(" %H:%M:%S")) + verify
+        bolt_line = str(highlight) + str(int(iv)) + "% " + str(name) + str(getform) + str(getcostume) + " " + pokeID.getGeschlecht(Sql.gender[i]) + " (" + str(Sql.cp[i]) + ")" + str(zeit.strftime(" %H:%M:%S")) + verify
         normal_line = "(L" + str(level) + ", " + str(angriff) + "/" + str(verteidigung) + "/" + str(leben) + ") " + str(kurzattacke) + "/" + str(ladeattacke)
         ###############################
 
@@ -52,20 +68,20 @@ class createMessage():
           list_string = list_string.split(', ') 
           id = list_string[send.list_output.index(encounter)]
           # Costum  Overview
-          overview += "<b>" + str(highlight) + str(iv) + "% " + str(name) + " " + str(pokeID.getGeschlecht(Sql.gender[i])) + " " + str(Sql.cp[i]) + "WP, " + str(zeit.strftime(" %H:%M:%S")) + "</b>" + verify + "\n└ <a href='" + cfg.ivchatUrl + "/" + str(id) + "'>(L" + str(level) + ", " + str(angriff) +"/"+ str(verteidigung)+"/"+str(leben)+ ") " + str(kurzattacke) + "/" + str(ladeattacke) +"</a>\n"
+          overview += "<b>" + str(highlight) + str(iv) + "% " + str(name) + str(getform) + str(getcostume) + " " + str(pokeID.getGeschlecht(Sql.gender[i])) + " " + str(Sql.cp[i]) + "WP, " + str(zeit.strftime(" %H:%M:%S")) + "</b>" + verify + "\n└ <a href='" + cfg.ivchatUrl + "/" + str(id) + "'>(L" + str(level) + ", " + str(angriff) +"/"+ str(verteidigung)+"/"+str(leben)+ ") " + str(kurzattacke) + "/" + str(ladeattacke) +"</a>\n"
         else:
           if not mode:
             if ((iv >= pokeID.iv or level >= pokeID.level) or iv == 0 or iv == 100) and not pokeID.iv == 200:
               id = send.send(bolt_line,normal_line,encounter,Sql.latitude[i],Sql.longitude[i])
               # Costum  Overview
-              overview += "<b>" + str(highlight) + str(iv) + "% " + str(name) + " " + str(pokeID.getGeschlecht(Sql.gender[i])) + " " + str(Sql.cp[i]) + "WP, " + str(zeit.strftime(" %H:%M:%S")) + "</b>" + verify + "\n└ <a href='" + cfg.ivchatUrl + "/" + str(id) + "'>(L" + str(level) + ", " + str(angriff) +"/"+ str(verteidigung)+"/"+str(leben)+ ") " + str(kurzattacke) + "/" + str(ladeattacke) +"</a>\n"
+              overview += "<b>" + str(highlight) + str(iv) + "% " + str(name) + str(getform) + str(getcostume) + " " + str(pokeID.getGeschlecht(Sql.gender[i])) + " " + str(Sql.cp[i]) + "WP, " + str(zeit.strftime(" %H:%M:%S")) + "</b>" + verify + "\n└ <a href='" + cfg.ivchatUrl + "/" + str(id) + "'>(L" + str(level) + ", " + str(angriff) +"/"+ str(verteidigung)+"/"+str(leben)+ ") " + str(kurzattacke) + "/" + str(ladeattacke) +"</a>\n"
           else:
             if ((iv >= pokeID.iv and level >= pokeID.level) or iv == 0 or iv == 100) and not pokeID.iv == 200:
               id = send.send(bolt_line,normal_line,encounter,Sql.latitude[i],Sql.longitude[i])
               # Costum  Overview
-              overview += "<b>" + str(highlight) + str(iv) + "% " + str(name) + " " + str(pokeID.getGeschlecht(Sql.gender[i])) + " " + str(Sql.cp[i]) + "WP, " + str(zeit.strftime(" %H:%M:%S")) + "</b>" + verify + "\n└ <a href='" + cfg.ivchatUrl + "/" + str(id) + "'>(L" + str(level) + ", " + str(angriff) +"/"+ str(verteidigung)+"/"+str(leben)+ ") " + str(kurzattacke) + "/" + str(ladeattacke) +"</a>\n"
+              overview += "<b>" + str(highlight) + str(iv) + "% " + str(name) + str(getform) + str(getcostume) + " " + str(pokeID.getGeschlecht(Sql.gender[i])) + " " + str(Sql.cp[i]) + "WP, " + str(zeit.strftime(" %H:%M:%S")) + "</b>" + verify + "\n└ <a href='" + cfg.ivchatUrl + "/" + str(id) + "'>(L" + str(level) + ", " + str(angriff) +"/"+ str(verteidigung)+"/"+str(leben)+ ") " + str(kurzattacke) + "/" + str(ladeattacke) +"</a>\n"
         i +=1
-      scanned = "\n(von " + str(i) + " aktiv gescannten Pok\u00E9mon)"
+      scanned = "\n" + self.getTranslate("from",cfg.language) + str(i) + self.getTranslate("scanned",cfg.language)
       send.sendOverview(overview,scanned)
       print("spawns: " + str(i))
 
@@ -89,3 +105,18 @@ class createMessage():
         ausgabe += "Wert i = " + str(i) + "\n"
         outF.writelines(ausgabe + str(e))
         outF.close()
+
+  def getTranslate(self,value,language):
+    text = {
+      "from": {
+        "de": "(Von ",
+        "en": "(of ",
+        "fr": "(of "
+      },
+      "scanned": {
+        "de": "aktiv gescannten Pok\u00E9mon)",
+        "en": "actively scanned Pok\u00E9mon)",
+        "fr": "actively scanned Pok\u00E9mon)"
+      }
+    }
+    return text[value][language]

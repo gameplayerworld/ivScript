@@ -16,6 +16,8 @@ class Sql():
   gender = []
   longitude = []
   latitude = []
+  form = []
+  costume = []
 
   def startSQL(self,cfg,modul):
     #Verbindungsaufbau zur MySQL-Datenbank
@@ -40,11 +42,13 @@ class Sql():
     self.gender.clear()
     self.longitude.clear()
     self.latitude.clear()
+    self.form.clear()
+    self.costume.clear()
 
 #Abfragen der Daten aus der Datenbank
     if modul == "0er":
 
-      cursor.execute("SELECT p.encounter_id,s.calc_endminsec,p.pokemon_id,p.individual_attack,p.individual_defense,p.individual_stamina,p.disappear_time,p.cp,p.cp_multiplier,p.move_1,p.move_2,p.gender,p.longitude,p.latitude FROM pokemon p LEFT JOIN trs_spawn s ON p.spawnpoint_id = s.spawnpoint where individual_attack IS NOT NULL AND disappear_time > utc_timestamp() AND p.longitude BETWEEN " + cfg.min_longitude + " AND " + cfg.max_longitude + " AND p.latitude BETWEEN " + cfg.min_latitude + " AND " + cfg.max_latitude + " ORDER BY round(((`individual_attack` + `individual_defense` + `individual_stamina` ) / 45) *100) DESC, disappear_time DESC")
+      cursor.execute("SELECT p.encounter_id,s.calc_endminsec,p.pokemon_id,p.individual_attack,p.individual_defense,p.individual_stamina,p.disappear_time,p.cp,p.cp_multiplier,p.move_1,p.move_2,p.gender,p.longitude,p.latitude,p.form,p.costume FROM pokemon p LEFT JOIN trs_spawn s ON p.spawnpoint_id = s.spawnpoint where individual_attack IS NOT NULL AND disappear_time > utc_timestamp() AND p.longitude BETWEEN " + cfg.min_longitude + " AND " + cfg.max_longitude + " AND p.latitude BETWEEN " + cfg.min_latitude + " AND " + cfg.max_latitude + " ORDER BY round(((`individual_attack` + `individual_defense` + `individual_stamina` ) / 45) *100) DESC, disappear_time DESC")
       all = cursor.fetchall()
       i = 0
       try:
@@ -63,6 +67,8 @@ class Sql():
           self.gender.append(all[i][11])
           self.longitude.append(all[i][12])
           self.latitude.append(all[i][13])
+          self.form.append(all[i][14])
+          self.costume.append(all[i][15])
           i +=1
       except Exception as e:
         outF = open(cfg.areaName+"error.txt","w")
@@ -81,12 +87,12 @@ class Sql():
         ausgabe += "gender: " + str(self.gender.__len__) + "\n"
         ausgabe += "longitude: " + str(self.longitude.__len__) + "\n"
         ausgabe += "latitude: " + str(self.latitude.__len__) + "\n"
+        ausgabe += "form: " + str(self.form.__len__) + "\n"
+        ausgabe += "costume: " + str(self.costume.__len__) + "\n"
         ausgabe += "Wert i" + str(i) + "\n"
         ausgabe += "All Variable: " + str(len(all))
         outF.writelines(ausgabe + str(e))
         outF.close()
 
-
-      
     cursor = cursor.close()
     connection.close()

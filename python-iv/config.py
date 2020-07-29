@@ -23,6 +23,7 @@ class Config():
   token = ""
   ivchatId = ""
   ivchatUrl = ""
+  language = ""
   chatId = ""
   chatUrl = ""
   areaName = ""
@@ -43,6 +44,8 @@ class Config():
     self.ivchatUrl = parser.get('Bot Settings', 'ivchat_url')
     self.chatId = parser.get('Bot Settings', 'chat_id')
     self.chatUrl = parser.get('Bot Settings', 'chat_url')
+
+    self.language = parser.get('Options', 'language')
 
     self.nuller = parser.get('Modul','nuller')
 
