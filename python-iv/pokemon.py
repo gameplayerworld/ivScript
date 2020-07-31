@@ -31,7 +31,10 @@ class pokemon():
     self.getIV(value)
     self.getLeveFromFile(value)
     self.getModeFromFile(value)
-    return switch[str(value)][language]
+    if not str(value) in switch:
+      return switch["null"][language]
+    else:
+      return switch[str(value)][language]
 
   def getForm(self,value,language):
     data = open('json/Form.json').read()
