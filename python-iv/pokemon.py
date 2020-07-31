@@ -37,7 +37,7 @@ class pokemon():
     data = open('json/Form.json').read()
     switch = json.loads(data)
     if not str(value) in switch:
-      return switch[None][language]
+      return switch["null"][language]
     else:
       return switch[str(value)][language]
 
@@ -45,7 +45,7 @@ class pokemon():
     data = open('json/Costume.json').read()
     switch = json.loads(data)
     if not str(value) in switch:
-      return switch[None][language]
+      return switch["null"][language]
     else:
       return switch[str(value)][language]
 
