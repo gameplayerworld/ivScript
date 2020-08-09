@@ -25,7 +25,7 @@ class Config():
   min_longitude = ""
   max_longitude = ""
   sleepTime = ""
-  nuller = ""
+  nuller = bool
   iv100 = ""
   iv0 = ""
 
@@ -56,7 +56,7 @@ class Config():
 
     self.sleepTime = parser.get('Message', 'sleep_time')
 
-    self.nuller = parser.get('Modul','nuller')
+    self.nuller = parser.getboolean('Modul','nuller')
 
     self.iv100 = parser.get('IV', '100')
     self.iv0 = parser.get('IV', '0')
