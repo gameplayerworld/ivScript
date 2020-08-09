@@ -45,7 +45,4 @@ clear = clear.Clear()
 clear.clear(cfg.token,cfg.ivchatId,cfg)
 
 modul = module.Module()
-if cfg.nuller == "true":
-  modul.nuller(cfg,gmt)
-else:
-	print("Es wurde nichts aktiviert. Pr\U000000fcfe im Configfile das die Attribute 'rocketStops' oder 'lureModule' auf 'true' gesetzt sind")
+modul.nuller(cfg,gmt)

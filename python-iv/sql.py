@@ -58,7 +58,7 @@ class Sql():
     sort_pokemon = str(pokeID).replace("[", "").replace("]", "")
 
     if sort_pokemon and cfg.sort_pokemon == True:
-      pokemon_sort = "FIELD(p.pokemon_id," + sort_pokemon + ")"
+      pokemon_sort = "FIELD(p.pokemon_id," + sort_pokemon + "), form, costume"
     else:
       pokemon_sort = "''"
 

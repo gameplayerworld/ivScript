@@ -22,9 +22,11 @@ class sendMessage():
       outF.close()
       return id.message_id
     except:
-      print(self.areaName+" Nachricht konnte nicht versendet werden")
+      print(self.areaName+" Venue Message konnte nicht versendet werden")
   
-  def sendOverview(self,message,scanned):
+  def sendOverview(self,message,scanned,new_pokemon,old_pokemon):
+    print("pokemon: " + str(new_pokemon))
+    print("old pokemon: " + str(old_pokemon))
     if message == "":
       message = "Aktuell keine gefilterten Pokemon vorhanden\n"
     else:
@@ -39,7 +41,7 @@ class sendMessage():
       f.writelines("\n new Message len ==> " + str(len(message)) + "\n")
       f.writelines(str(message))
       f.close()
-      if len(message) <= len(self.overview_old) or (len(message) > len(self.overview_old) and lengh == 1):
+      if (len(message) <= len(self.overview_old) and new_pokemon == old_pokemon) or (len(message) > len(self.overview_old) and lengh == 1):
         try:
           self.bot.edit_message_text(message,chat_id=self.chatID, message_id=self.overviewId.message_id, parse_mode='HTML',disable_web_page_preview=True) ##Nachricht 
           self.overview_old = message
@@ -50,10 +52,11 @@ class sendMessage():
             self.overviewId = self.bot.send_message(self.chatID,message,parse_mode='HTML')
             self.overview_old = message
           except:
-            print(self.areaName+" Nachricht konnte nicht editiert werden")    
+            print(self.areaName+" Overview Message konnte nicht editiert werden")    
       else:
         try: 
           self.bot.delete_message(self.chatID,self.overviewId.message_id)
+          print("delete overview on " + str(datetime.datetime.now()))
           self.overviewId = self.bot.send_message(self.chatID,message,parse_mode='HTML')
           self.overview_old = message
         except:
@@ -61,7 +64,9 @@ class sendMessage():
             self.overviewId = self.bot.send_message(self.chatID,message,parse_mode='HTML',disable_web_page_preview=True,disable_notification=False)
             self.overview_old = message
           except:
-            print(self.areaName+" Nachricht konnte nicht gesendet werden")
+            print(self.areaName+" Overview Message konnte nicht gesendet werden")
+        finally:
+          print("finsh at " + str(datetime.datetime.now()))
    
   def clearOutputList(self,encounter):
     i = 0
