@@ -87,7 +87,7 @@ class createMessage():
           old_pokemon +=1
         else:
           if not mode:
-            if ((iv >= self.iv or level >= self.level and not self.iv == 200) or iv > 0 and iv < 10 and cfg.nuller == True):
+            if ((iv >= self.iv or level >= self.level and not self.iv == 200) or iv == 0 and cfg.nuller == True):
               id = send.send(bolt_line,normal_line,encounter,Sql.latitude[i],Sql.longitude[i])
               # Costum  Overview
               if cfg.sort_pokemon == True:
@@ -96,7 +96,7 @@ class createMessage():
                 overview += "<b>" + str(highlight) + str(iv) + "% " + str(name) + str(getform) + str(getcostume) + " " + str(Sql.cp[i]) + "WP, " + str(zeit.strftime(" %H:%M:%S")) + "</b>" + verify + "\n└ <a href='" + cfg.ivchatUrl + "/" + str(id) + "'>L" + str(level) + " (" + str(angriff) +"/"+ str(verteidigung)+"/"+str(leben)+ ") " + str(kurzattacke) + "/" + str(ladeattacke) +"</a>\n"
               new_pokemon +=1
           else:
-            if ((iv >= self.iv and level >= self.level and not self.iv == 200) or iv > 0 and iv < 10 and cfg.nuller == True):
+            if ((iv >= self.iv and level >= self.level and not self.iv == 200) or iv == 0 and cfg.nuller == True):
               id = send.send(bolt_line,normal_line,encounter,Sql.latitude[i],Sql.longitude[i])
               # Costum  Overview
               if cfg.sort_pokemon == True:
