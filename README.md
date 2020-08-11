@@ -10,11 +10,11 @@
 `cp config_example.ini config.ini`
 
 ## Start
-`python3 raid-main.py`
+`python3 iv-main.py`
 
 optional, you can put the config parameter
 
-`python3 rocket-main.py myconfig.ini`
+`python3 iv-main.py myconfig.ini`
 
 ## Notes
 
