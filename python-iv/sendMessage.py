@@ -33,14 +33,14 @@ class sendMessage():
       message+=scanned
     lengh = len(message) - len(self.overview_old)
     if not message == self.overview_old:
-      # DEBUG:
-      f = open("DEBUG.txt", "a")
-      f.writelines("\n\n####################==========\\ " + str(datetime.datetime.now()) + " /==========####################")
-      f.writelines("\n old Message len ==> " + str(len(self.overview_old)) + "\n")
-      f.writelines(str(self.overview_old))
-      f.writelines("\n new Message len ==> " + str(len(message)) + "\n")
-      f.writelines(str(message))
-      f.close()
+      ### DEBUG:
+      #f = open("DEBUG.txt", "a")
+      #f.writelines("\n\n####################==========\\ " + str(datetime.datetime.now()) + " /==========####################")
+      #f.writelines("\n old Message len ==> " + str(len(self.overview_old)) + "\n")
+      #f.writelines(str(self.overview_old))
+      #f.writelines("\n new Message len ==> " + str(len(message)) + "\n")
+      #f.writelines(str(message))
+      #f.close()
       if (len(message) <= len(self.overview_old) and new_pokemon == old_pokemon) or (len(message) > len(self.overview_old) and lengh == 1):
         try:
           self.bot.edit_message_text(message,chat_id=self.chatID, message_id=self.overviewId.message_id, parse_mode='HTML',disable_web_page_preview=True) ##Nachricht 
