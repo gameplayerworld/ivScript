@@ -652,6 +652,12 @@ function LoadFile() {
     document.getElementById("Id646").value = arrLines[645];
     document.getElementById("Id647").value = arrLines[646];
     document.getElementById("Id648").value = arrLines[647];
-    document.getElementById("Id649").value = arrLines[648]; 
+    document.getElementById("Id649").value = arrLines[648];
+
+    document.getElementById("Id808").value = arrLines[649];
+    document.getElementById("Id809").value = arrLines[650];
+    document.getElementById("Id862").value = arrLines[651];
+    document.getElementById("Id863").value = arrLines[652];
+    document.getElementById("Id865").value = arrLines[653];
 }
 

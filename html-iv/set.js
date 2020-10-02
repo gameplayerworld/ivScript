@@ -647,7 +647,13 @@ function setIV() {
     document.getElementById("Id646").value = document.getElementById("iv_allgemein").value;
     document.getElementById("Id647").value = document.getElementById("iv_allgemein").value;
     document.getElementById("Id648").value = document.getElementById("iv_allgemein").value;
-    document.getElementById("Id649").value = document.getElementById("iv_allgemein").value; 
+    document.getElementById("Id649").value = document.getElementById("iv_allgemein").value;
+
+    document.getElementById("Id808").value = document.getElementById("iv_allgemein").value;
+    document.getElementById("Id809").value = document.getElementById("iv_allgemein").value;
+    document.getElementById("Id862").value = document.getElementById("iv_allgemein").value;
+    document.getElementById("Id863").value = document.getElementById("iv_allgemein").value;
+    document.getElementById("Id865").value = document.getElementById("iv_allgemein").value;
 }
 
 function setLevel() {
@@ -1299,7 +1305,13 @@ function setLevel() {
     document.getElementById("Level646").value = document.getElementById("level_allgemein").value;
     document.getElementById("Level647").value = document.getElementById("level_allgemein").value;
     document.getElementById("Level648").value = document.getElementById("level_allgemein").value;
-    document.getElementById("Level649").value = document.getElementById("level_allgemein").value; 
+    document.getElementById("Level649").value = document.getElementById("level_allgemein").value;
+
+    document.getElementById("Level808").value = document.getElementById("level_allgemein").value;
+    document.getElementById("Level809").value = document.getElementById("level_allgemein").value;
+    document.getElementById("Level862").value = document.getElementById("level_allgemein").value;
+    document.getElementById("Level863").value = document.getElementById("level_allgemein").value;
+    document.getElementById("Level865").value = document.getElementById("level_allgemein").value;
 }
 
 function setMode() {
@@ -1951,5 +1963,11 @@ function setMode() {
     document.getElementById("mode646").value = document.getElementById("modus_allgemein").value;
     document.getElementById("mode647").value = document.getElementById("modus_allgemein").value;
     document.getElementById("mode648").value = document.getElementById("modus_allgemein").value;
-    document.getElementById("mode649").value = document.getElementById("modus_allgemein").value; 
+    document.getElementById("mode649").value = document.getElementById("modus_allgemein").value;
+
+    document.getElementById("mode808").value = document.getElementById("modus_allgemein").value;
+    document.getElementById("mode809").value = document.getElementById("modus_allgemein").value;
+    document.getElementById("mode862").value = document.getElementById("modus_allgemein").value;
+    document.getElementById("mode863").value = document.getElementById("modus_allgemein").value;
+    document.getElementById("mode865").value = document.getElementById("modus_allgemein").value;
 }

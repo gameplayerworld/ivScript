@@ -2,12 +2,16 @@
 
 #### HELP ON DISCORD: https://discord.gg/QYcR4cu
 
-## Install Telebot
+### this is the multi branch. you can configure several channels. the script automatically distributes the messages in the correct channels
+
+## Install requirements
 
 `pip3 -r install requirements.txt`
 
 ## Config
 `cp config_example.ini config.ini`
+
+`customize the `areas.json` with your Channels`
 
 ## Start
 `python3 iv-main.py`

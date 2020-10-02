@@ -652,5 +652,11 @@ function LoadLevelFile() {
     document.getElementById("Level646").value = arrLines[645];
     document.getElementById("Level647").value = arrLines[646];
     document.getElementById("Level648").value = arrLines[647];
-    document.getElementById("Level649").value = arrLines[648]; 
+    document.getElementById("Level649").value = arrLines[648];
+
+    document.getElementById("Level808").value = arrLines[649];
+    document.getElementById("Level809").value = arrLines[650];
+    document.getElementById("Level862").value = arrLines[651];
+    document.getElementById("Level863").value = arrLines[652];
+    document.getElementById("Level865").value = arrLines[653];
 }

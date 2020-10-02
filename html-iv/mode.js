@@ -652,6 +652,12 @@ function LoadModeFile() {
     document.getElementById("mode646").value = arrLines[645];
     document.getElementById("mode647").value = arrLines[646];
     document.getElementById("mode648").value = arrLines[647];
-    document.getElementById("mode649").value = arrLines[648]; 
+    document.getElementById("mode649").value = arrLines[648];
+
+    document.getElementById("mode808").value = arrLines[649];
+    document.getElementById("mode809").value = arrLines[650];
+    document.getElementById("mode862").value = arrLines[651];
+    document.getElementById("mode863").value = arrLines[652];
+    document.getElementById("mode865").value = arrLines[653];
 }
 

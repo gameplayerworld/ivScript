@@ -653,7 +653,12 @@ function showHint(str) {
     str += document.getElementById("Id646").value + ",";
     str += document.getElementById("Id647").value + ",";
     str += document.getElementById("Id648").value + ",";
-    str += document.getElementById("Id649").value
+    str += document.getElementById("Id649").value + ",";
+    str += document.getElementById("Id808").value + ",";
+    str += document.getElementById("Id809").value + ",";
+    str += document.getElementById("Id862").value + ",";
+    str += document.getElementById("Id863").value + ",";
+    str += document.getElementById("Id865").value
         xmlhttp.open("GET", "gethint.php?q=" + str, true);
         xmlhttp.send();
 	alert("IV gespeichert");
@@ -1306,7 +1311,12 @@ function showHint(str) {
     str += document.getElementById("Level646").value + ",";
     str += document.getElementById("Level647").value + ",";
     str += document.getElementById("Level648").value + ",";
-    str += document.getElementById("Level649").value
+    str += document.getElementById("Level649").value + ",";
+    str += document.getElementById("Level808").value + ",";
+    str += document.getElementById("Level809").value + ",";
+    str += document.getElementById("Level862").value + ",";
+    str += document.getElementById("Level863").value + ",";
+    str += document.getElementById("Level865").value
         xmlhttp.open("GET", "speicherLevel.php?q=" + str, true);
         xmlhttp.send();  
 	alert("Level gespeichert");
@@ -1958,7 +1968,12 @@ function showHint(str) {
     str += document.getElementById("mode646").value + ",";
     str += document.getElementById("mode647").value + ",";
     str += document.getElementById("mode648").value + ",";
-    str += document.getElementById("mode649").value; 
+    str += document.getElementById("mode649").value + ",";
+    str += document.getElementById("mode808").value + ",";
+    str += document.getElementById("mode809").value + ",";
+    str += document.getElementById("mode862").value + ",";
+    str += document.getElementById("mode863").value + ",";
+    str += document.getElementById("mode865").value;
     xmlhttp.open("GET", "speicherMode.php?q=" + str, true);
     xmlhttp.send();  
 
