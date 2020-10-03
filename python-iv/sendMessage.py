@@ -130,5 +130,9 @@ class sendMessage():
 
       self.write_json(self.clear)
 
+    for encount in self.last_encounter_id:
+        if encount not in encounter:
+          self.last_encounter_id.remove(encount)
+
   def setConfig(self,token):
     self.bot = telebot.TeleBot(token)

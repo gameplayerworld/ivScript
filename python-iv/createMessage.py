@@ -20,12 +20,10 @@ class createMessage():
     switch = json.loads(data)
 
     try:
-      for encounter in send.last_encounter_id:
-        if encounter in send.last_encounter_id and encounter not in Sql.encounter_id:
-          send.last_encounter_id.remove(encounter)
-
       for encounter in Sql.encounter_id:
         if (encounter in send.last_encounter_id and not send.list_output.__contains__(encounter)):
+          for areas in switch['channels']:
+            overview[areas['Name']] = send.overview_old[areas['Name']]
           i += 1
           continue
 
@@ -114,7 +112,8 @@ class createMessage():
               new_pokemon[areas['Name']] +=1
         
         i +=1
-        send.last_encounter_id.append(encounter)
+        if not encounter in send.last_encounter_id:
+          send.last_encounter_id.append(encounter)
       scanned = "\n" + self.getTranslate("from",cfg.language) + str(i) + self.getTranslate("scanned",cfg.language)
       send.sendOverview(overview,scanned,new_pokemon,old_pokemon)
 
