@@ -22,8 +22,6 @@ class createMessage():
     try:
       for encounter in Sql.encounter_id:
         if (encounter in send.last_encounter_id and not send.list_output.__contains__(encounter)):
-          for areas in switch['channels']:
-            overview[areas['Name']] = send.overview_old[areas['Name']]
           i += 1
           continue
 

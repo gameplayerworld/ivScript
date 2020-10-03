@@ -12,6 +12,7 @@ from termcolor import colored
 class sendMessage():
   chatID = 0
   bot = ""
+  message = ""
   list_output = []
   overview_old = {}
   overviewId = 0
