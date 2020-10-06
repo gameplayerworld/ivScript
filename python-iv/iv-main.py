@@ -38,7 +38,7 @@ cfg = config.Config()
 try:
   cfg.readConfig(sys.argv[1])
 except:
-  cfg.readConfig("config.ini")
+  cfg.readConfig("config.json")
 
 clear = clear.Clear()
 clear.clear(cfg.token,cfg)
