@@ -126,7 +126,6 @@ class sendMessage():
             print(colored(" SUCCESS:", 'green') + " Entferne encounter " + str(encount) + " in " + areas['Name'])
           except:
             print(colored("   ERROR:", 'red') + " encounter " + str(encount) + " in " + areas['Name'] + " konnte nicht entfernt werden")
-            return index
         i +=1
 
       self.write_json(self.clear)
