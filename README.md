@@ -4,7 +4,7 @@
 
 ## Install Telebot
 
-`pip3 -r install requirements.txt`
+`pip3 install -r requirements.txt`
 
 ## Config
 `cp config_example.ini config.ini`
